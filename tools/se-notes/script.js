@@ -46,7 +46,7 @@ function generateNotes() {
     var global1 = "need a very good detailed support case notes using below template and using below case summary,";
     var global2 = "need a very good detailed  support case transfer notes using below template and using below case summary, ";
     var global3 = ", need a very good detailed  handover notes using below template and using below case summary, ALSO FILL THE ACTION PLAN BAED ON THE SUMMARY AND ADD NOTES DONT LEAVE IT BLANK";
-    var global4 = ", Below i provided the template fill the details like Issue: and Resolution: based on the case summary provided";
+    var global4 = "need a very good detailed email, Below i provided the template fill the details like Issue: and Resolution: based on the case summary provided";
 
     var case_notes_temp = "SUMMARY\n\n+++++++++++++++++++++++++++\n\nSCOPE\n\n[Issue Description]\n[Business Impact]\n[Expected Outcome]\n\n+++++++++++++++++++++++++++\n\nCASE SUMMARY\n\n[Environment]\n[Troubleshooting]\n\nAction Plan template:\n\nACTION PLAN\n\nCase Status: <who>\nNext Action: <what/why>\nNext Contact: <when>";
 
