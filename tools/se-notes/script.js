@@ -68,7 +68,7 @@ function generateNotes() {
         final_string = global3 + temp.replace("Transfer reason:", "Transfer reason: " + reasonForTransfer) + "\nadditional notes like the action plan, next action etc."+addNotes +"\nSummary of the support case:"+ summary;
     } else if (selected === "4") {
         if (contactMethod === "1") {
-            final_string = global4 + lqr_email_temp.replace("do not use the customer in the email use you", summary + "\nadditional notes like the action plan, next action etc."+addNotes) + summary;
+            final_string = global4 + lqr_email_temp.replace("do not use the customer in the email use you", summary + "\nadditional notes like the action plan, next action etc."+addNotes) + "case summry:"+ summary + "additional notes: "addNotes;
         } else {
             final_string = "Invalid contact method";
         }
