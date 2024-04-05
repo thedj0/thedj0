@@ -1,1 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Case Notes Generator</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
 
+        #header {
+            background-color: #007bff;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #footer {
+            background-color: white;
+            position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
+    z-index: 0;
+        }
+
+        #copyButton, #redirectButton, #generateButton {
+            color: white;
+            background-color: green;
+            border: none;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        #copyButton, #redirectButton {
+            margin-right: 10px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            display: inline-block; /* Ensures button is displayed */
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #output {
+            margin-top: 20px;
+        }
+
+        .popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+    </style>
+</head>
+<body>
+
+    <div id="popup" class="popup">
+        <!-- Popup content -->
+        <div class="popup-content">
+            <span class="close" id="closePopup">&times;</span>
+            <h2>Welcome to Support notes generator !!!</h2>
+            <p>Please click "MERGE TEMPLATE" button first and then "REDIRECT TO CHATGPT" button.</p>
+            <p>If chatgpt is not giving any response or showing some unrelevent info. JUST REPLY WITH "?" then it will get the notes</p>
+        </div>
+    </div>
+
+
+    <div id="header">
+        <h2>Support Case Notes Generator V2.2 - BETA</h2>
+    </div>
+    <div class="container">
+        <label for="selectedTemplate">Select Template:</label>
+        <select id="selectedTemplate" onchange="toggleFields()">
+            <option value="1">Case Notes</option>
+            <option value="2" selected>Transfer Notes</option>
+            <option value="3">Handover Notes</option>
+            <option value="4">LQR Email</option>
+            <option value="5">Case Close Notes</option>
+            
+        </select>
+        <br>
+        <label for="summaryInput">Summary Text:</label>
+        <input type="text" id="summaryInput">
+        <br>
+        <label for="notesInput">Additional Notes:</label>
+        <input type="text" id="notesInput">
+        <br>
+        <label for="reasonForTransfer" id="reasonForTransferLabel">Reason for Transfer:</label>
+        <input type="text" id="reasonForTransfer">
+        <br>
+        <label for="contactMethod">Contact Method:</label>
+        <select id="contactMethod">
+            <option value="1">Email</option>
+            <!-- You can add more options here if needed -->
+        </select>
+        <br>
+        <button id="generateButton" onclick="generateNotes()">Merge the template</button>
+        <button id="redirectButton">Redirect to ChatGPT</button>
+        <button id="copyButton" hidden="hidden">Copy the template</button>
+        <br>
+        <div id="output" style="color:WHITE"></div>
+    </div>  
+    <script src="script.js"></script>
+
+  
+</body>
+<footer>
+    <center>
+    <div id="footer">
+    <p>Developed by Dj and Meg || V2.2 - BETA</p>
+</center>
+</div>
+</footer>
+
+</html>
