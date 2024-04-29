@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👨‍💻 Support Case Notes Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-mode">
+
+    <div id="header">
+        <h2>Support Case Notes Generator V3</h2>
+    </div>
+
+    <!-- Toggle switch for light/dark mode -->
+    <center>
+        Light
+        <label class="toggle">
+            <input type="checkbox" id="modeToggle" onclick="toggleMode()">
+            <span class="slider"></span>
+        </label> Dark
+    </center><br>
+    <center>
+        <button id="tutorialButton" onclick="startTutorial()"> 🤹 Request Tutorial</button><br>
+        <button id="detectSensitiveButton" onclick="detectSensitiveInfo()"> ✂️ Detect Sensitive Information and Remove</button>
+    </center>
+
+    <div class="container">
+        <label for="selectedTemplate">Select Template:</label>
+        <select id="selectedTemplate" onchange="toggleFields()">
+            <option value="1">Case Notes</option>
+            <option value="2" selected>Transfer Notes</option>
+            <option value="3">Handover Notes</option>
+            <option value="4">LQR Email</option>
+            <option value="5">Case Close Notes</option>
+        </select>
+        <br>
+        <label for="summaryInput">Summary Text: *</label>
+        <input type="text" id="summaryInput">
+        <br>
+        <label for="notesInput">Additional Notes:</label>
+        <input type="text" id="notesInput">
+        <br>
+        <label for="reasonForTransfer" id="reasonForTransferLabel">Reason for Transfer:</label>
+        <input type="text" id="reasonForTransfer">
+        <br>
+        <label for="contactMethod">Contact Method:</label>
+        <select id="contactMethod">
+            <option value="1">Email</option>
+            <!-- You can add more options here if needed -->
+        </select>
+        <br>
+        <button id="generateButton" onclick="handleGenerateButtonClick()">🫱🏼‍🫲🏻 Merge the template</button>
+        <button id="redirectButton"> 📺 Redirect to ChatGPT</button>
+        <button id="copyButton" hidden="hidden"> 🖱️ Copy the template</button>
+        <br>
+        <div id="output"></div>
+    </div>
+
+    <center>
+        <p style="color:darkgray">Developed with ❤️ by DJ & MEG</p>
+    </center>
+
+    <script src="script.js"></script>
+
+   
+
+</body>
+</html>
