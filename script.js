@@ -46,7 +46,7 @@ function generateNotes() {
     var final_string = "";
 
     // Regular expression to match emails or IDs and all
-var regex = /\b[\w.-]+@[\w.-]+\.\w{2,4}\b/g;
+var regex = ;
 
 
     // Check if any input matches the regex
