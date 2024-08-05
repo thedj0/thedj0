@@ -14,7 +14,7 @@
                 alert('Login successful!');
             } else {
                 alert('Invalid credentials. Redirecting to Bing...');
-                window.location.href = 'https://thed0.github.io';
+                window.location.href = 'https://thedj0.github.io';
             }
         }
 
