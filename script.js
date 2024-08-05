@@ -46,7 +46,7 @@ function generateNotes() {
     var final_string = "";
 
     // Regular expression to match emails or IDs and all
-var regex = /\b[\w.-]+@[\w.-]+\.\w{2,4}\b/g;
+    var regex = /\b([\w._%+-]+@[\w.-]+\.\w{2,4}|[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}|[0-9A-Fa-f]{32}|[a-zA-Z0-9_-]{10,}|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|(?:http[s]?://)?(?:www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(/\S*)?)\b/g;
 
 
     // Check if any input matches the regex
@@ -255,7 +255,8 @@ function detectSensitiveInfo() {
     var reasonForTransferInput = document.getElementById('reasonForTransfer');
 
     // Regular expression to match emails, IDs, passwords, JWT tokens, and Microsoft tokens
-    var regex = /\b[\w.-]+@[\w.-]+\.\w{2,4}\b/g;
+    var regex = /\b([\w._%+-]+@[\w.-]+\.\w{2,4}|[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}|[0-9A-Fa-f]{32}|[a-zA-Z0-9_-]{10,}|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|(?:http[s]?://)?(?:www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(/\S*)?)\b/g;
+
 
     // Function to find sensitive information in an input box
     function findSensitiveInfo(inputValue) {
