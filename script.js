@@ -1,3 +1,26 @@
+ const validUserId = 'user123';
+        const validPassword = 'pass123';
+
+        function authenticateUser() {
+            // Prompt for user ID
+            const userId = prompt('Enter your user ID:');
+            
+            // Prompt for password
+            const password = prompt('Enter your password:');
+            
+            // Check credentials
+            if (userId === validUserId && password === validPassword) {
+                alert('Login successful!');
+            } else {
+                alert('Invalid credentials. Please try again.');
+            }
+        }
+
+        // Automatically run the authentication process when the page loads
+        window.onload = authenticateUser;
+
+
+
 function toggleFields() {
     var templateSelect = document.getElementById("selectedTemplate");
     var reasonForTransferLabel = document.getElementById("reasonForTransferLabel");
