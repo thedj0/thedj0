@@ -1,4 +1,5 @@
- const validUserId = 'user123';
+  // Predefined credentials for demonstration
+        const validUserId = 'user123';
         const validPassword = 'pass123';
 
         function authenticateUser() {
@@ -12,13 +13,10 @@
             if (userId === validUserId && password === validPassword) {
                 alert('Login successful!');
             } else {
-                alert('Invalid credentials. Please try again.');
+                alert('Invalid credentials. Redirecting to Bing...');
+                window.location.href = 'https://thed0.github.io';
             }
         }
-
-        // Automatically run the authentication process when the page loads
-        window.onload = authenticateUser;
-
 
 
 function toggleFields() {
