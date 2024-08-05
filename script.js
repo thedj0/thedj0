@@ -48,8 +48,9 @@ function generateNotes() {
     // Regular expression to match emails or IDs and all
 //var regex = /\b[\w.-]+@[\w.-]+\.\w{2,4}\b/g;
 
-var regex = /\b([\w.%+-]+@[\w.-]+\.\w{2,4}|[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}|[0-9A-Fa-f]{32}|\b(?:\d{1,3}\.){3}\d{1,3})\b/g;
+//var regex = /\b([\w.%+-]+@[\w.-]+\.\w{2,4}|[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}|[0-9A-Fa-f]{32}|\b(?:\d{1,3}\.){3}\d{1,3})\b/g;
 
+var regex = /\b([\w.%+-]+@[\w.-]+\.\w{2,4}|[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}|[0-9A-Fa-f]{32}|\b(?:\d{1,3}\.){3}\d{1,3}|[A-Za-z0-9]{32,64})\b/g;
 
 
     // Check if any input matches the regex
@@ -259,7 +260,8 @@ function detectSensitiveInfo() {
 
     // Regular expression to match emails, IDs, passwords, JWT tokens, and Microsoft tokens
     //var regex = /\b[\w.-]+@[\w.-]+\.\w{2,4}\b/g;
-    var regex = /\b([\w.%+-]+@[\w.-]+\.\w{2,4}|[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}|[0-9A-Fa-f]{32}|\b(?:\d{1,3}\.){3}\d{1,3})\b/g;
+   // var regex = /\b([\w.%+-]+@[\w.-]+\.\w{2,4}|[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}|[0-9A-Fa-f]{32}|\b(?:\d{1,3}\.){3}\d{1,3})\b/g;
+   var regex = /\b([\w.%+-]+@[\w.-]+\.\w{2,4}|[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}|[0-9A-Fa-f]{32}|\b(?:\d{1,3}\.){3}\d{1,3}|[A-Za-z0-9]{32,64})\b/g;
 
     // Function to find sensitive information in an input box
     function findSensitiveInfo(inputValue) {
