@@ -2,7 +2,6 @@
         const validUserId = 'user123';
         const validPassword = 'pass123';
 
-        function authenticateUser() {
             // Prompt for user ID
             const userId = prompt('Enter your user ID:');
             
@@ -16,7 +15,7 @@
                 alert('Invalid credentials. Redirecting to Bing...');
                 window.location.href = 'https://thedj0.github.io';
             }
-        }
+        
 
 
 function toggleFields() {
