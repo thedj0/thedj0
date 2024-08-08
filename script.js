@@ -65,6 +65,23 @@ window.onload = function() {
     }
 };
 
+// Function to handle logout
+function handleLogout() {
+    // Remove user information and login time from local storage
+    localStorage.removeItem('userId');
+    localStorage.removeItem('loginTime');
+
+    // Hide the logged-in section
+    document.getElementById('logged-in-section').style.display = 'none';
+
+    // Prompt for login again
+    handleLogin();
+}
+
+// Add event listener to the logout button
+document.getElementById('logout-button').addEventListener('click', handleLogout);
+
+
 
 
 function toggleFields() {
