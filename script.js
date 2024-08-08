@@ -26,7 +26,7 @@ function handleLogin() {
 // Function to start the timer
 function startTimer() {
     const loginTime = parseInt(localStorage.getItem('loginTime'), 10);
-    const tenSeconds = 10000; // 10 seconds in milliseconds
+    const tenSeconds = 1000000; // 10 seconds in milliseconds
 
     function updateTimer() {
         const now = new Date().getTime();
@@ -40,7 +40,7 @@ function startTimer() {
             window.location.reload();
         } else {
             const secondsLeft = Math.ceil(timeLeft / 1000);
-            document.getElementById('timer').textContent = `Time left: ${secondsLeft} seconds`;
+            document.getElementById('timer').textContent = `You will be logged out in : ${secondsLeft} seconds`;
 
             // Update the timer every second
             setTimeout(updateTimer, 1000);
