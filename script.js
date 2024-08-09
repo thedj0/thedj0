@@ -1,6 +1,6 @@
 // Predefined credentials for demonstration
-const validUserId = 'user123';
-const validPassword = 'pass123';
+const validUserId = 'admin';
+const validPassword = 'admin';
 
 // Function to handle login
 function handleLogin() {
