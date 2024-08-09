@@ -1,75 +1,3 @@
-// Predefined credentials for demonstration
-const validUserId = 'admin';
-const validPassword = 'admin';
-
-// Function to handle login
-function handleLogin() {
-    const userId = prompt('Enter your user ID:');
-    const password = prompt('Enter your password:');
-
-    if (userId === validUserId && password === validPassword) {
-        // Store user information and current time in local storage
-        localStorage.setItem('userId', userId);
-        localStorage.setItem('loginTime', new Date().getTime());
-
-        // Show the logged-in section
-        document.getElementById('logged-in-section').style.display = 'block';
-
-        // Start the timer
-        startTimer();
-    } else {
-        alert('Invalid credentials. Redirecting to Bing...');
-        window.location.href = 'https://thedj0.github.io';
-    }
-}
-
-// Function to start the timer
-function startTimer() {
-    const loginTime = parseInt(localStorage.getItem('loginTime'), 10);
-    const tenSeconds = 1000000; // 10 seconds in milliseconds
-
-    function updateTimer() {
-        const now = new Date().getTime();
-        const timeLeft = Math.max(0, tenSeconds - (now - loginTime));
-
-        if (timeLeft === 0) {
-            // Timer expired, force login again
-            alert('Session expired. Please log in again.');
-            localStorage.removeItem('userId');
-            localStorage.removeItem('loginTime');
-            window.location.reload();
-        } else {
-            const secondsLeft = Math.ceil(timeLeft / 1000);
-            document.getElementById('timer').textContent = `You will be logged out in : ${secondsLeft} seconds`;
-
-            // Update the timer every second
-            setTimeout(updateTimer, 1000);
-        }
-    }
-
-    updateTimer();
-}
-
-// Check if the user is already logged in
-window.onload = function() {
-    const userId = localStorage.getItem('userId');
-
-    if (userId) {
-        // If user is already logged in, show the logged-in section
-        document.getElementById('logged-in-section').style.display = 'block';
-        document.getElementById('user-info').textContent = `Logged in as: ${userId}`;
-        startTimer();
-    } else {
-        // Prompt for login if not already logged in
-        handleLogin();
-    }
-};
-
-
-
-
-
-
 function toggleFields() {
     var templateSelect = document.getElementById("selectedTemplate");
     var reasonForTransferLabel = document.getElementById("reasonForTransferLabel");
@@ -118,11 +46,7 @@ function generateNotes() {
     var final_string = "";
 
     // Regular expression to match emails or IDs and all
-//var regex = /\b[\w.-]+@[\w.-]+\.\w{2,4}\b/g;
-
-//var regex = /\b([\w.%+-]+@[\w.-]+\.\w{2,4}|[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}|[0-9A-Fa-f]{32}|\b(?:\d{1,3}\.){3}\d{1,3})\b/g;
-
-var regex = /\b([\w.%+-]+@[\w.-]+\.\w{2,4}|[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}|[0-9A-Fa-f]{32}|\b(?:\d{1,3}\.){3}\d{1,3}|[A-Za-z0-9]{32,64})\b/g;
+var regex = /\b[\w.-]+@[\w.-]+\.\w{2,4}\b/g;
 
 
     // Check if any input matches the regex
@@ -331,9 +255,7 @@ function detectSensitiveInfo() {
     var reasonForTransferInput = document.getElementById('reasonForTransfer');
 
     // Regular expression to match emails, IDs, passwords, JWT tokens, and Microsoft tokens
-    //var regex = /\b[\w.-]+@[\w.-]+\.\w{2,4}\b/g;
-   // var regex = /\b([\w.%+-]+@[\w.-]+\.\w{2,4}|[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}|[0-9A-Fa-f]{32}|\b(?:\d{1,3}\.){3}\d{1,3})\b/g;
-   var regex = /\b([\w.%+-]+@[\w.-]+\.\w{2,4}|[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}|[0-9A-Fa-f]{32}|\b(?:\d{1,3}\.){3}\d{1,3}|[A-Za-z0-9]{32,64})\b/g;
+    var regex = /\b[\w.-]+@[\w.-]+\.\w{2,4}\b/g;
 
     // Function to find sensitive information in an input box
     function findSensitiveInfo(inputValue) {
