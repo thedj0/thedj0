@@ -224,7 +224,7 @@
                     showPopup();
                     setTimeout(() => {
                         // Redirect after 3 seconds
-                        const url = `/indexmainpage.html?setbot=true&selectedTemplate=${selectedTemplate}&summaryInput=${encodeURIComponent(summaryInput)}&notesInput=${encodeURIComponent(notesInput)}&reasonForTransfer=${encodeURIComponent(reasonForTransfer)}&contactMethod=${contactMethod}`;
+                        const url = `/bot/indexmain.html?setbot=true&selectedTemplate=${selectedTemplate}&summaryInput=${encodeURIComponent(summaryInput)}&notesInput=${encodeURIComponent(notesInput)}&reasonForTransfer=${encodeURIComponent(reasonForTransfer)}&contactMethod=${contactMethod}`;
                         window.location.href = url;
                     }, 2000);
                     break;
