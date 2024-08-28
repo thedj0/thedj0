@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 👨‍💻 Support Case Notes Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styles for the modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        
+        /* Modal content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+        
+        /* Close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="light-mode">
+
+    <div id="header">
+        <h2>Support Case Notes Generator V3</h2>
+    </div>
+
+    <!-- Toggle switch for light/dark mode -->
+    <center>
+        Light
+        <label class="toggle">
+            <input type="checkbox" id="modeToggle" onclick="toggleMode()">
+            <span class="slider"></span>
+        </label> Dark
+    </center><br>
+    <center>
+        <button id="tutorialButton" onclick="startTutorial()"> 🤹 Request Tutorial</button><br>
+        <button id="detectSensitiveButton" onclick="detectSensitiveInfo()"> ✂️ Detect Sensitive Information and Remove</button>
+    </center>
+
+    <div class="container">
+        <label for="selectedTemplate">Select Template:</label>
+        <select id="selectedTemplate" onchange="toggleFields()">
+            <option value="1">Case Notes</option>
+            <option value="2" selected>Transfer Notes</option>
+            <option value="3">Handover Notes</option>
+            <option value="4">LQR Email</option>
+            <option value="5">Case Close Notes</option>
+        </select>
+        <br>
+        <label for="summaryInput">Summary Text: *</label>
+        <input type="text" id="summaryInput">
+        <br>
+        <label for="notesInput">Additional Notes:</label>
+        <input type="text" id="notesInput">
+        <br>
+        <label for="reasonForTransfer" id="reasonForTransferLabel">Reason for Transfer:</label>
+        <input type="text" id="reasonForTransfer">
+        <br>
+        <label for="contactMethod">Contact Method:</label>
+        <select id="contactMethod">
+            <option value="1">Email</option>
+            <!-- You can add more options here if needed -->
+        </select>
+        <br>
+        <button id="generateButton" onclick="handleGenerateButtonClick()">🫱🏼‍🫲🏻 Merge the template</button>
+        <button id="redirectButton"> 📺 Redirect to ChatGPT</button>
+        <button id="copyButton" hidden="hidden"> 🖱️ Copy the template</button>
+        <br>
+        <div id="output"></div>
+    </div>
+
+    <center>
+        <p style="color:darkgray">Developed with ❤️ by DJ & MEG</p>
+    </center>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Troubleshooting Tips:</h3>
+            <p>Here are some tips to troubleshoot common issues:</p>
+            <ul>
+                <b><li>Tip 1: If you get incomplete or not relatable info. from chatGPT just reply with "?".</li></b>
+                
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // Show modal after 2 seconds
+        setTimeout(function() {
+            modal.style.display = "block";
+        }, 2000);
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

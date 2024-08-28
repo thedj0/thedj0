@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> NoteGenie👨‍💻 || Support Case Notes Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styles for the modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        
+        /* Modal content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+        
+        /* Close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="light-mode">
+
+    <div id="header">
+        <h2>Support Case Notes Generator👨‍💻 - NoteGenie V4.2</h2>  <!-- Toggle switch for light/dark mode --><br> 
+      
+        <center>
+            Light
+            <label class="toggle">
+                <input type="checkbox" id="modeToggle" onclick="toggleMode()">
+                <span class="slider"></span>
+            </label> Dark
+        </center>
+    </div>
+
+   <br>
+
+   <center>
+    <button id="tutorialButton" onclick="startTutorial()"> 🤹 Request Tutorial</button><br>
+    <button id="detectSensitiveButton" onclick="detectSensitiveInfo()"> ✂️ Detect Sensitive Information and Remove</button>
+    
+    <div id="customPopup" style="display: none; background-color: red; color: white; padding: 10px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;">
+        <p>Warning: You have not selected High Security!</p>
+        <p>Selecting "High Security" is recommended by the app developer to avoid passing PII/ Sensitive Information</p>
+        <button id="popupOkButton">OK, I understand</button>
+    </div><br>
+</center>
+
+    <div class="container">
+
+        <label for="selectedTemplate">Select Template:</label>
+        <select id="selectedTemplate" onchange="toggleFields()">
+            <option value="1">Case Notes</option>
+            <option value="2" selected>Transfer Notes</option>
+            <option value="3">Handover Notes</option>
+            <option value="4">LQR Email</option>
+            <option value="5">Case Closure Notes</option>
+        </select>
+        <br>
+        <label for="summaryInput">Summary Text: *</label>
+        <input type="text" id="summaryInput">
+        <br>
+        <label for="notesInput">Additional Notes:</label>
+        <input type="text" id="notesInput">
+        <br>
+        <label for="reasonForTransfer">Reason for Transfer:</label>
+        <input type="text" id="reasonForTransfer">
+        <br>
+        <label for="contactMethod">Please note that data you have provided will go to 3rd party AI models:</label>
+        <select id="contactMethod">
+            <option value="1">YES, NOTED</option>
+            <!-- You can add more options here if needed -->
+        </select>
+        <br>
+        <button id="generateButton" onclick="generateNotes()">🫱🏼‍🫲🏻 Merge the template</button>
+        <button id="redirectButton" onclick="handleRedirectButtonClick()">📺 Redirect to ChatGPT</button>
+        <button id="copyButton" hidden="hidden"> 🖱️ Copy the template</button>
+        <br>
+        <div id="output"></div>
+    </div>
+
+    <center>
+        <p style="color:darkgray">Developed with ❤️ by DJ & MEG</p>
+    </center>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Troubleshooting Tips:</h3>
+            <p>Here are some tips to troubleshoot common issues:</p>
+            <ul>
+                <b><li>Tip 1: If you get incomplete or not relatable info. from chatGPT just reply with "?".</li></b>
+                
+            </ul>
+        </div>
+    </div>
+
+  
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+    
+            // Populate the fields with URL parameters
+            const selectedTemplate = urlParams.get('selectedTemplate');
+            if (selectedTemplate) {
+                document.getElementById('selectedTemplate').value = selectedTemplate;
+            }
+    
+            const summaryInput = urlParams.get('summaryInput');
+            if (summaryInput) {
+                document.getElementById('summaryInput').value = summaryInput;
+            }
+    
+            const notesInput = urlParams.get('notesInput');
+            if (notesInput) {
+                document.getElementById('notesInput').value = notesInput;
+            }
+    
+            const reasonForTransfer = urlParams.get('reasonForTransfer');
+            if (reasonForTransfer) {
+                document.getElementById('reasonForTransfer').value = reasonForTransfer;
+            }
+    
+            const contactMethod = urlParams.get('contactMethod');
+            if (contactMethod) {
+                document.getElementById('contactMethod').value = contactMethod;
+            }
+    
+            const securityLevel = urlParams.get('securityLevel');
+            if (securityLevel) {
+                const selectElement = document.getElementById('securityLevel');
+                selectElement.value = securityLevel;
+    
+                // Show a warning if "High Security" is not selected
+                if (securityLevel !== 'medium') {
+                    document.getElementById('customPopup').style.display = 'block';
+                }
+            }
+    
+            // Check if summary input is filled
+            if (document.getElementById('summaryInput').value) {
+                // Click the "Merge the template" button
+                document.getElementById('generateButton').click();
+                
+                // Redirect to ChatGPT after the template is merged
+                setTimeout(function() {
+                    handleRedirectButtonClick();
+                }, 500); // Adjust delay as needed
+            }
+        };
+    
+        function handleRedirectButtonClick() {
+            console.log('Redirect Button Clicked');
+    
+            // Get the text from the output element
+            var outputText = document.getElementById("output").innerText;
+    
+            // Encode the text for use in the URL
+            var encodedText = encodeURIComponent(outputText);
+    
+            // Construct the URL with the encoded text
+            var url = "https://chat.openai.com/?q=" + encodedText;
+    
+            // Open the URL in a new tab
+            window.open(url);
+        }
+    </script>
+    
+
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
